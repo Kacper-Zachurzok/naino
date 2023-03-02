@@ -17,8 +17,8 @@ export type LoginUserInput = TypeOf<typeof loginUserSchema>;
 
 const passwordWithValidationSchema = passwordSchema.refine(
   (data) => {
-    //TODO password regex (min. 6 letters, 1 digit and 1 special character)
-    return data.length >= 6;
+    const regex = /^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+    return !!data.match(regex);
   },
   {
     message:
