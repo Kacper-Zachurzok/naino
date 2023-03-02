@@ -1,3 +1,120 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-primary {
+  position: relative;
+  isolation: isolate;
+  background-color: black;
+}
+
+.bg-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/background.png");
+  background-size: cover;
+  filter: blur(5px);
+  z-index: -1;
+}
+
+.screen-belt {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 3em;
+  background-color: hsla(0, 0%, 0%, 70%);
+  color: white;
+  font-size: 1.3rem;
+  box-shadow: 0 0 0.75em 0.5em hsla(0, 0%, 0%, 70%);
+}
+@media (min-width: 580px) {
+  .screen-belt {
+    width: fit-content;
+    margin-left: max(8%, 3em);
+    margin-right: 5%;
+  }
+}
+
+.nav-primary {
+  background-color: hsla(0, 0%, 0%, 70%);
+  padding: 1em 1.5em;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 -0.25em 0.5em 0.5em rgba(0, 0, 0, 70%);
+  font-size: 1.3rem;
+}
+.nav-primary > .btn {
+  width: fit-content;
+}
+
+.form-group {
+  position: relative;
+  color: white;
+  margin-block: 1.5em;
+}
+
+.form-group > label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: transform 150ms ease-out, font-size 150ms ease-out;
+  cursor: text;
+}
+.form-group:has(input:focus, input:not(:placeholder-shown)) > label {
+  transform: translateY(-75%);
+  font-size: 0.75em;
+}
+
+.form-group > input {
+  width: 100%;
+  display: block;
+  background: transparent;
+  border-bottom: 0.15em solid white;
+  margin-block: 0.25em;
+  padding: 0.2em 0.3em;
+  outline: none;
+  transition: border-color 0.5s ease-out;
+}
+.form-group > input:hover {
+  border-color: hsl(212, 96%, 78%);
+}
+.form-group > input:focus {
+  border-color: hsl(221, 83%, 53%);
+}
+.form-group:has(.issue) > input:not(:hover, :focus) {
+  border-color: hsl(0, 84%, 60%);
+}
+.form-group > .issue {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: translateX(100%);
+  background-color: hsl(0, 84%, 60%);
+  border-radius: 0.5em;
+  padding: 0.25em 0.5em;
+  color: white;
+  z-index: 10;
+}
+
+.btn {
+  width: 100%;
+  background-color: hsl(217, 91%, 60%, 50%);
+  padding: 0.2em 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 0.5em;
+  transition: background-color 0.5s ease-out;
+  text-align: center;
+}
+.btn:hover,
+.btn:focus {
+  background-color: hsl(217, 91%, 60%, 75%);
+}
+.btn[disabled] {
+  background-color: hsla(0, 0%, 50%, 0.75);
+}
